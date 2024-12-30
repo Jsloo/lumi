@@ -1,6 +1,19 @@
 <div>
     <x-admin.modal :id="$modalID" :title="$modalTitle" wireClose="closeModalReset">
-    
+        <div class="fv-row mb-8">
+            <x-admin.label :name="__('Category Image')" />
+            
+            <x-admin.avatar :newThumbnail="$newThumbnail" :thumbnail="$thumbnail" livewire="newThumbnail">
+                <div class="image-input-wrapper w-125px h-125px" @style([
+                    'background-image: url(../../assets/admin/media/svg/files/blank-image.svg)' => !$thumbnail && !$newThumbnail,
+                    'background-image:' . $thumbnail => $thumbnail,
+                    'background-image:' . $temporaryUrl => $newThumbnail,
+                ])>
+                </div>
+            </x-admin.avatar>
+            <x-admin.input-error :messages="$errors->get('newThumbnail')" />
+        </div>
+
         <div class="fv-row mb-8">
             <x-admin.label class="required" :name="__('Name')" />
             <x-admin.input class="form-control-solid" placeholder="Enter Category Name" wire:model="name" />

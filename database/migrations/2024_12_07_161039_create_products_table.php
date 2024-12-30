@@ -24,7 +24,6 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
 
-            // Foreign key constraint
             $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
         });
     }

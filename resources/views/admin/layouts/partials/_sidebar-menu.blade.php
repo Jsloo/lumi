@@ -28,6 +28,12 @@
                     <span class="menu-title">Sub Category List</span>
                 </a>
             </div>
+            <div class="menu-item">
+                <a class="menu-link {{ Route::is('admin.contact.lists') ? 'active' : null }}" href="{{ route('admin.contact.lists') }}">
+                    <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+                    <span class="menu-title">Contact List</span>
+                </a>
+            </div>
         </div>
         {{-- end::Sidebar menu --}}
     </div>

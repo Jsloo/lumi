@@ -13,66 +13,7 @@
 <!-- header area start -->
 <header class="header-area">
     <!-- header top area start -->
-    <div class="header-top-area  !bg-[#222222]  text-center p-[30px_0]">
-        <div class="container">
-            <div class="flex flex-wrap mx-[-12px]">
-                <div class="w-full flex-[0_0_auto] px-[12px] max-w-full">
-                    <div class="tractor-lang float-left mx-0 my-1 sm:block sm:w-full sm:mx-0 sm:my-2.5 ">
-                        <div class="nice-select w-[100px] text-white capitalize rounded-none bg-transparent sm:float-none  sm:inline-block "
-                            tabindex="0">
-                            <span class="current">english</span>
-                            <ul class="list text-[#ffab00] w-[100px] rounded-none bg-white">
-                                <li data-value="01"
-                                    class="option border-b-[#f1f1f1] border-b border-solid last:border-b-[transparent] focus">
-                                    bangla</li>
-                                <li data-value="01"
-                                    class="option border-b-[#f1f1f1] border-b border-solid last:border-b-[transparent]">
-                                    spanish</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <ul class="header-top-social inline-block mx-0 my-2 sm:block  sm:clear-both ">
-                        <li class=" inline-block">
-                            <a class=" text-white text-xl px-2.5 py-0" href="#">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                        </li>
-                        <li class=" inline-block">
-                            <a class=" text-white text-xl px-2.5 py-0" href="#">
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                        </li>
-                        <li class=" inline-block">
-                            <a class=" text-white text-xl px-2.5 py-0" href="#">
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                        </li>
-                        <li class=" inline-block">
-                            <a class=" text-white text-xl px-2.5 py-0" href="#">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li class=" inline-block">
-                            <a class=" text-white text-xl px-2.5 py-0" href="#">
-                                <i class="fa fa-skype"></i>
-                            </a>
-                        </li>
-                        <li class=" inline-block">
-                            <a class=" text-white text-xl px-2.5 py-0" href="#">
-                                <i class="fa fa-behance"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <div
-                        class="quote-btn float-right sm:float-none sm:block sm:clear-both sm:text-center sm:mx-auto sm:my-0">
-                        <a href="#"
-                            class=" text-[#222222] text-[15px] font-semibold tracking-[1px] leading-[21px] uppercase px-5 py-2.5 border-0 font-OpenSans inline-block btn-type-4">get
-                            a quote</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- header top area end -->
     <!-- header middle area start -->
     <div class="header-middle-area p-[30px_0]">
@@ -92,14 +33,14 @@
                             <i
                                 class="fa fa-phone text-white w-[30px] h-8 text-center align-middle leading-8 text-lg mr-2.5 bg-[#ffab00]"></i>
                             <div class="short-info text-[14px] capitalize text-[#777777] font-normal font-OpenSans">
-                                phone number: <h4 class=" text-[14px] font-bold leading-[18px]">00-123-123-4567</h4>
+                                phone number: <h4 class=" text-[14px] font-bold leading-[18px]">06-337 3151</h4>
                             </div>
                         </li>
                         <li class=" inline-flex items-center justify-center ml-5">
                             <i
                                 class="fa fa-at text-white w-[30px] h-8 text-center align-middle leading-8 text-lg mr-2.5 bg-[#ffab00]"></i>
                             <div class="short-info text-[14px] capitalize text-[#777777] font-normal font-OpenSans">
-                                email address: <h4 class=" text-[14px] font-bold leading-[18px]">bd@tractour.com
+                                email address: <h4 class=" text-[14px] font-bold leading-[18px]">melaka@lumibright.com
                                 </h4>
                             </div>
                         </li>
@@ -107,8 +48,7 @@
                             <i
                                 class="fa fa-map-marker text-white w-[30px] h-8 text-center align-middle leading-8 text-lg mr-2.5 bg-[#ffab00]"></i>
                             <div class="short-info text-[14px] capitalize text-[#777777] font-normal font-OpenSans">
-                                address location: <h4 class=" text-[14px] font-bold leading-[18px]">25737 UK Rt 11,
-                                    BL 22</h4>
+                                address location: <h4 class=" text-[14px] font-bold leading-[18px]">Taman Teknologi Cheng</h4>
                             </div>
                         </li>
                     </ul>

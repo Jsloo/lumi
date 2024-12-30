@@ -18,25 +18,16 @@ class Form extends Component
 
     use LivewireAlert;
 
-    #[Validate('image|max:1024')] // 1MB Max
-    public $photo;
- 
-    public function save()
-    {
-        $this->photo->store(path: 'photos');
-    }
-
     public string $modalID = 'productModal', $modalTitle = 'Product';
     public $thumbnail, $newThumbnail, $name, $price, $stock, $description, $temporaryUrl, $product, $subCategory, $subCategorys;
     public bool $edit = false, $loading = false;
-    protected $listeners = ['editProduct' => 'edit'];
+    protected $listeners = ['editProduct' => 'edit','updateDescription'];
 
-    public function mount()
+    public function updateDescription($value)
     {
-        $this->subCategorys = SubCategory::all();
+        $this->description = $value;
     }
 
-    
 
     protected function rules(): array
     {
@@ -71,17 +62,14 @@ class Form extends Component
         $this->subCategory  = $product->subCategory->id;
         $this->thumbnail  = $this->getThumbnailUrl($product->image);
         $this->edit  = true;
-    }
-
-    public function test(){
-        dd(1);
+        $this->dispatch('load-editor-content', ['description' => $this->description]);
     }
 
     public function store(): void
     {
-        dd($this->newThumbnail);
-        $this->validate();
+        
         try {
+            $this->validate();
             $this->loading = true;
             $thumbnail = $this->newThumbnail->store('product', 'public');
             Product::create([
@@ -90,13 +78,14 @@ class Form extends Component
                 'stock' => $this->stock,
                 'description' => $this->description,
                 'image' => $thumbnail,
-                'sub_category_id' => $this->subCategory
+                'sub_category_id' => $this->subCategory,
+                'slug' => str_replace(' ', '_', strtolower($this->name)),
             ]);
 
             $this->reset();
-            $this->emit('closeModal', '#'.$this->modalID);
-            $this->emit('refreshComponent');
-            $this->alert('success', 'Reward Created Succesfully!');
+            $this->dispatch('closeModal', '#'.$this->modalID);
+            $this->dispatch('refreshComponent');
+            $this->alert('success', 'Product Created Succesfully!');
         } catch (Exception $e) {
             $this->alert('error', $e->getMessage());
         }
@@ -104,19 +93,20 @@ class Form extends Component
 
     public function update(): void
     {
-        $this->validate();
         try {
+            $this->validate();
             $this->loading = true;
             $this->product->update([
                 'name' => $this->name,
                 'price' => $this->price,
                 'stock' => $this->stock,
                 'description' => $this->description,
-                'sub_category_id' => $this->subCategory
+                'sub_category_id' => $this->subCategory,
+                'slug' => str_replace(' ', '_', strtolower($this->name)),
             ]);
 
             if($this->newThumbnail){
-                $thumbnail = $this->newThumbnail->store('reward_image', 'public');
+                $thumbnail = $this->newThumbnail->store('product', 'public');
                 
                 $this->product->update([
                     'image' => $thumbnail,
@@ -124,9 +114,9 @@ class Form extends Component
             }
             
             $this->reset();
-            $this->emit('closeModal', '#'.$this->modalID);
-            $this->emit('refreshComponent');
-            $this->alert('success', 'Reward Updated Succesfully!'); 
+            $this->dispatch('closeModal', '#'.$this->modalID);
+            $this->dispatch('refreshComponent');
+            $this->alert('success', 'Product Updated Succesfully!'); 
 
         } catch (Exception $e) {
             $this->alert('error', $e->getMessage());

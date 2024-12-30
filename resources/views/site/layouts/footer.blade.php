@@ -1,116 +1,38 @@
 <div class="footer-area black-bg p-[100px_0]">
     <div class="container">
         <div class="flex flex-wrap mx-[-12px]">
-            <div class="xl:w-3/12 lg:w-3/12 md:w-3/12 sm:w-6/12 flex-[0_0_auto] max-w-full px-[12px]">
+            <div class="xl:w-4/12 lg:w-4/12 md:w-4/12 sm:w-6/12 flex-[0_0_auto] max-w-full px-[12px]">
                 <div class="footer-widget sm:mx-0 sm:my-[15px] widget-1">
                     <div class="footer-logo mb-10">
                         <a href="#">
                             <img src="{{ asset('assets/site/img/lumiLogo.png')  }}" alt="footer-logo" class="img-fluid" />
                         </a>
                     </div>
-                    <p class=" text-[#777777] mb-5">simply dummy text of the and typesetting industry. Lorem Ipsum
-                        has been the industry's standard</p>
-                    <p class=" text-[#777777]">dummy text ever since the 1500s, when ands unknown printer took a
-                        galley of type</p>
+                    <p class=" text-[#777777] mb-5">We are committed to providing top-quality safety products and services to ensure a safer environment for all.</p>
+                    <p class=" text-[#777777]">Your safety is our priority.</p>
                 </div>
             </div>
-            <div class="xl:w-3/12 lg:w-3/12 md:w-3/12 sm:w-6/12 flex-[0_0_auto] max-w-full px-[12px]">
+            <div class="xl:w-4/12 lg:w-4/12 md:w-4/12 sm:w-6/12 flex-[0_0_auto] max-w-full px-[12px]">
                 <div class="footer-widget sm:mx-0 sm:my-[15px] widget-2">
                     <h3
                         class=" font-medium text-black capitalize relative text-[20px] mb-5 pb-5 after:content-[''] after:absolute after:w-20 after:h-1 after:left-0 after:bottom-0 after:bg-[#ffab00]">
-                        <strong>popular</strong> link</h3>
+                        <strong>popular</strong> Product</h3>
                     <ul class="footer-popu-link">
-                        <li class=" block mb-[15px] last:mb-0">
-                            <a class=" text-[#757575] capitalize font-semibold text-[15px] font-OpenSans"
-                                href="#">laboratory <i class="fa fa-arrow-circle-o-right float-right"></i>
-                            </a>
-                        </li>
-                        <li class=" block mb-[15px] last:mb-0">
-                            <a class=" text-[#757575] capitalize font-semibold text-[15px] font-OpenSans"
-                                href="#">industry <i class="fa fa-arrow-circle-o-right float-right"></i>
-                            </a>
-                        </li>
-                        <li class=" block mb-[15px] last:mb-0">
-                            <a class=" text-[#757575] capitalize font-semibold text-[15px] font-OpenSans"
-                                href="#">materials <i class="fa fa-arrow-circle-o-right float-right"></i>
-                            </a>
-                        </li>
-                        <li class=" block mb-[15px] last:mb-0">
-                            <a class=" text-[#757575] capitalize font-semibold text-[15px] font-OpenSans"
-                                href="#">audio <i class="fa fa-arrow-circle-o-right float-right"></i>
-                            </a>
-                        </li>
-                        <li class=" block mb-[15px] last:mb-0">
-                            <a class=" text-[#757575] capitalize font-semibold text-[15px] font-OpenSans"
-                                href="#">metallurgy <i class="fa fa-arrow-circle-o-right float-right"></i>
-                            </a>
-                        </li>
-                        <li class=" block mb-[15px] last:mb-0">
-                            <a class=" text-[#757575] capitalize font-semibold text-[15px] font-OpenSans"
-                                href="#">video <i class="fa fa-arrow-circle-o-right float-right"></i>
-                            </a>
-                        </li>
+                        @forelse (\App\Models\Category::all() as $category)
+                            <li class=" block mb-[15px] last:mb-0">
+                                <a class=" text-[#757575] capitalize font-semibold text-[15px] font-OpenSans"
+                                    href="{{ route('category.subcategory',$category->slug) }}">{{ $category->name }} <i class="fa fa-arrow-circle-o-right float-right"></i>
+                                </a>
+                            </li>
+                        @empty
+                            
+                        @endforelse
+                       
                     </ul>
                 </div>
             </div>
-            <div class="xl:w-3/12 lg:w-3/12 md:w-3/12 sm:w-6/12 flex-[0_0_auto] max-w-full px-[12px]">
-                <div class="footer-widget sm:mx-0 sm:my-[15px] widget-3">
-                    <h3
-                        class=" font-medium text-black capitalize relative text-[20px] mb-5 pb-5 after:content-[''] after:absolute after:w-20 after:h-1 after:left-0 after:bottom-0 after:bg-[#ffab00]">
-                        <strong>tags</strong> widget</h3>
-                    <ul class="list-inline tag-list">
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">awesome</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">beautiful</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">flat design</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">ios</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">themforest</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">mass</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">awesome</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">beautiful</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">flat design</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">ios</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">themforest</a>
-                        </li>
-                        <li class=" inline-block ml-0 mr-[5px] mt-0 mb-2.5">
-                            <a class=" text-[13px] leading-6 text-[#363636] border block transition-all duration-[0.2s] px-2 py-2.5 border-solid border-[#f1f1f1] hover:text-white font-OpenSans hover:bg-[#ffab00]"
-                                href="#">mass</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="xl:w-3/12 lg:w-3/12 md:w-3/12 sm:w-6/12 flex-[0_0_auto] max-w-full px-[12px]">
+
+            <div class="xl:w-4/12 lg:w-4/12 md:w-4/12 sm:w-12/12 flex-[0_0_auto] max-w-full px-[12px]">
                 <div class="footer-widget sm:mx-0 sm:my-[15px] widget-3">
                     <h3
                         class=" font-medium text-black capitalize relative text-[20px] mb-5 pb-5 after:content-[''] after:absolute after:w-20 after:h-1 after:left-0 after:bottom-0 after:bg-[#ffab00]">
@@ -120,7 +42,7 @@
                             <a class="text-[18px] text-black font-semibold block capitalize mb-5 font-Montserrat"
                                 href="#">office one</a>
                         </h4>
-                        <p class=" text-[#757575]">123 jessore js, khulna kh, chowrasta, jessore</p>
+                        <p class=" text-[#757575]">25, Jln TTC 26B, Taman Teknologi Cheng, 75260 Cheng, Malacca</p>
                     </div>
                     <ul class="footer-social">
                         <li class=" inline-block mr-1.5 mb-1.5">

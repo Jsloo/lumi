@@ -14,6 +14,8 @@ class Form extends Component
 
     public string $modalID = 'categoryModal', $modalTitle = 'Category';
     public $name, $category;
+    public $thumbnail, $newThumbnail, $temporaryUrl;
+
     public bool $edit = false, $loading = false;
     protected $listeners = ['editCategory' => 'edit'];
 
@@ -24,7 +26,16 @@ class Form extends Component
             'name' => ['required', 'string'],
         ];
     
-    
+        if (!$this->edit) {
+            $rules = array_merge($rules, [
+                'newThumbnail' => ['required', 'image', 'max:2048'],
+            ]);
+        } else {
+            $rules = array_merge($rules, [
+                'newThumbnail' => ['nullable', 'image', 'max:2048'],
+            ]);
+        }
+
         return $rules;
     }
 
@@ -32,11 +43,8 @@ class Form extends Component
     {
         $this->category = $category;
         $this->name = $category->name;
+        $this->thumbnail  = $this->getThumbnailUrl($category->image);
         $this->edit  = true;
-    }
-
-    public function test(){
-        dd(1);
     }
 
     public function store(): void
@@ -44,9 +52,11 @@ class Form extends Component
         $this->validate();
         try {
             $this->loading = true;
+            $thumbnail = $this->newThumbnail->store('category', 'public');
             Category::create([
                 'name' => $this->name,
                 'slug' => str_replace(' ', '_', strtolower($this->name)),
+                'image' => $thumbnail,
             ]);
 
             $this->reset();
@@ -67,7 +77,13 @@ class Form extends Component
                 'name' => $this->name,
                 'slug' => str_replace(' ', '_', strtolower($this->name)),
             ]);
-
+            if($this->newThumbnail){
+                $thumbnail = $this->newThumbnail->store('category', 'public');
+                
+                $this->category->update([
+                    'image' => $thumbnail,
+                ]);
+            }
             $this->reset();
             $this->dispatch('closeModal', '#'.$this->modalID);
             $this->dispatch('refreshComponent');
@@ -78,7 +94,20 @@ class Form extends Component
         }
     }
 
+    public function getThumbnailUrl(?string $thumbnail = null): ?string
+    {
+        if ($thumbnail) {
+            return 'url(' . secure_asset('storage/' . $thumbnail) . ')';
+        }
 
+        return $thumbnail;
+    }
+
+    public function updatedNewThumbnail(): void
+    {
+        $this->temporaryUrl = 'url(' . $this->newThumbnail->temporaryUrl() . ')';
+    }
+    
     public function closeModalReset(){
         $this->resetErrorBag(); 
         $this->reset();

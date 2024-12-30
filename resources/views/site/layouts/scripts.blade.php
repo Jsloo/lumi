@@ -16,12 +16,16 @@
 <script src="{{ asset('assets/site/js/ajax-form.js') }}"></script>
 <script src="{{ asset('assets/site/js/plugins.js') }}"></script>
 <script src="{{ asset('assets/site/js/main.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<x-livewire-alert::scripts />
 
 @livewireScripts
 {{-- <x-livewire-alert::scripts /> --}}
 
 <script>
-    window.livewire.on('success', (message, modal) => {
+    Livewire.on('success', (message, modal) => {
         Swal.fire({
             position: 'center',
             icon: 'success',
@@ -31,7 +35,7 @@
         });
     });
 
-    window.livewire.on('warning', (message, action) => {
+    Livewire.on('warning', (message, action) => {
         Swal.fire({
             title: message,
             text: "You cannot revert this decision!",
@@ -46,12 +50,12 @@
             }
         }).then((result) => {
             if (result['isConfirmed']) {
-                window.livewire.emit(action);
+                wLivewire.emit(action);
             }
         });
     });
 
-    window.livewire.on('error', (message) => {
+    Livewire.on('error', (message) => {
         Swal.fire({
             position: 'center',
             icon: 'error',
@@ -65,7 +69,7 @@
         });
     });
 
-    window.livewire.on('info', (message, modal) => {
+    Livewire.on('info', (message, modal) => {
         $(modal).modal('hide');
         Swal.fire({
             position: 'center',

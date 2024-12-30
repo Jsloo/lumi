@@ -15,6 +15,8 @@ class Form extends Component
 
     public string $modalID = 'subCategoryModal', $modalTitle = 'subCategory';
     public $name, $subCategory, $categorys, $category;
+    public $thumbnail, $newThumbnail, $temporaryUrl;
+
     public bool $edit = false, $loading = false;
     protected $listeners = ['editSubCategory' => 'edit'];
 
@@ -30,6 +32,15 @@ class Form extends Component
             'category' => ['required'],
         ];
     
+        if (!$this->edit) {
+            $rules = array_merge($rules, [
+                'newThumbnail' => ['required', 'image', 'max:2048'],
+            ]);
+        } else {
+            $rules = array_merge($rules, [
+                'newThumbnail' => ['nullable', 'image', 'max:2048'],
+            ]);
+        }
     
         return $rules;
     }
@@ -39,13 +50,8 @@ class Form extends Component
         $this->subCategory = $subCategory;
         $this->name = $subCategory->name;
         $this->category = $subCategory->category->id;
+        $this->thumbnail  = $this->getThumbnailUrl($subCategory->image);
         $this->edit  = true;
-        // dd($subCategory);
-
-    }
-
-    public function test(){
-        dd(1);
     }
 
     public function store(): void
@@ -53,10 +59,12 @@ class Form extends Component
         $this->validate();
         try {
             $this->loading = true;
+            $thumbnail = $this->newThumbnail->store('sub-category', 'public');
             SubCategory::create([
                 'name' => $this->name,
                 'slug' => str_replace(' ', '_', strtolower($this->name)),
-                'category_id' => $this->category
+                'category_id' => $this->category,
+                'image' => $thumbnail,
             ]);
 
             $this->reset();
@@ -78,7 +86,14 @@ class Form extends Component
                 'slug' => str_replace(' ', '_', strtolower($this->name)),
                 'category_id' => $this->category
             ]);
-            
+
+            if($this->newThumbnail){
+                $thumbnail = $this->newThumbnail->store('sub-category', 'public');
+                
+                $this->subCategory->update([
+                    'image' => $thumbnail,
+                ]);
+            }
             $this->reset();
             $this->dispatch('closeModal', '#'.$this->modalID);
             $this->dispatch('refreshComponent');
@@ -89,6 +104,19 @@ class Form extends Component
         }
     }
 
+    public function getThumbnailUrl(?string $thumbnail = null): ?string
+    {
+        if ($thumbnail) {
+            return 'url(' . secure_asset('storage/' . $thumbnail) . ')';
+        }
+
+        return $thumbnail;
+    }
+
+    public function updatedNewThumbnail(): void
+    {
+        $this->temporaryUrl = 'url(' . $this->newThumbnail->temporaryUrl() . ')';
+    }
 
     public function closeModalReset(){
         $this->resetErrorBag(); 

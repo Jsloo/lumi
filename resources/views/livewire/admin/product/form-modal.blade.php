@@ -14,15 +14,7 @@
             </x-admin.avatar>
             <x-admin.input-error :messages="$errors->get('newThumbnail')" />
         </div>
-        <form wire:submit.prevent="save" enctype="multipart/form-data">
-            <input type="file" wire:model="photo">
-         
-            @error('photo') <span class="error">{{ $message }}</span> @enderror
-         
-            <button type="submit">Save photo</button>
-        </form>
-    
-        {{-- @error('photo') <span class="error">{{ $message }}</span> @enderror --}}
+
         <div class="fv-row mb-8">
             <x-admin.label class="required" :name="__('Name')" />
             <x-admin.input class="form-control-solid" placeholder="Enter Product Name" wire:model="name" />
@@ -41,23 +33,23 @@
             <x-admin.input class="form-control-solid" placeholder="Enter Product Price" wire:model="stock" />
             <x-admin.input-error :messages="$errors->get('stock')" />
         </div>
-    
-        <div class="fv-row mb-8">
-            <x-admin.label class="required" :name="__('Description')" />
-            <x-admin.textarea class="form-control-solid" placeholder="Enter Product Description" wire:model="description" />
-            <x-admin.input-error :messages="$errors->get('description')" />
-        </div>
 
         <div class="fv-row mb-8">
             <x-admin.label class="required" :name="__('Sub Category')" />
             <x-admin.input-select id="productTypeSelect2" class="form-select-solid" wire:model="subCategory" data-dropdown-parent="#{{ $modalID }}">
-                @forelse ($subCategorys as $item)
+                @forelse (\App\Models\SubCategory::all() as $item)
                     <option value="{{ $item->id }}" {{ $item->id == $subCategory ? 'selected' : '' }}>{{ $item->name }}</option>
                 @empty
                     <option value="">No Sub Category Found</option>
                 @endforelse
             </x-admin.input-select>
             <x-admin.input-error :messages="$errors->get('category')" />
+        </div>
+
+        <div class="fv-row mb-8" wire:ignore>
+            <x-admin.label class="required" :name="__('Description')" />
+            <x-admin.textarea class="form-control-solid" placeholder="Enter Product Description"  id="task-textarea" wire:model.live="description" />
+            <x-admin.input-error :messages="$errors->get('description')" />
         </div>
 
         <x-slot name="button">
@@ -68,3 +60,73 @@
         </x-slot>
     </x-admin.modal>
 </div>
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.css" />
+@endpush
+
+@push('scripts')
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script>
+   let editorInstance;
+
+    function initializeEditor() {
+        const editorElement = document.querySelector('#task-textarea');
+        if (editorElement) {
+            ClassicEditor
+                .create(editorElement, {})
+                .then(editor => {
+                    editorInstance = editor;
+                    console.log("Editor initialized");
+
+                    window.addEventListener('load-editor-content', event => {
+                        const editorContent = event.detail[0]; 
+                        console.log(editorContent); 
+
+                        if (editorInstance) {
+                            editorInstance.setData(editorContent.description);
+                        } else {
+                            console.warn("Editor instance not available. Retrying...");
+                            setTimeout(() => {
+                                if (editorInstance) {
+                                    editorInstance.setData(editorContent.description);
+                                }
+                            }, 100);
+                        }
+                    });
+
+
+                    editor.model.document.on('change:data', () => {
+                        Livewire.dispatch('updateDescription', { value: editor.getData() });
+                    });
+                })
+                .catch(error => {
+                    console.error("Editor initialization failed:", error);
+                });
+        } else {
+            console.warn("Editor element not found.");
+        }
+    }
+
+
+
+    document.addEventListener('livewire:load', () => {
+        console.log("Livewire: updated11");
+
+        console.log("Livewire: load");
+        initializeEditor();
+    });
+
+    // Livewire 更新后重新初始化
+    document.addEventListener('livewire:updated', () => {
+        console.log("Livewire: updated");
+        initializeEditor();
+    });
+
+    // 回退机制
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("Fallback: DOMContentLoaded");
+        initializeEditor();
+    });
+</script>
+
+@endpush
