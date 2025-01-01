@@ -21,7 +21,7 @@
             <div class="flex flex-wrap mx-[-12px]">
                 <div class="xl:w-5/12 lg:w-5/12 md:w-5/12 w-full flex-[0_0_auto] max-w-full px-[12px]">
                     <div class="header-middle-logo inline-block sm:block sm:text-center sm:mx-0 sm:my-[15px] ">
-                        <a href="index.html">
+                        <a href="{{ route('home') }}">
                             <img src="{{ asset('assets/site/img/lumiLogo.png')  }}" alt="logo" class="img-fluid sm:m-[0_auto]" />
                         </a>
                     </div>
