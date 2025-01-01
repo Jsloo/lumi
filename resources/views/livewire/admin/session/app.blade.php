@@ -33,7 +33,7 @@
             <div class="d-none d-lg-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2"
                 style="background-image: url({{ secure_asset('assets/admin/media/misc/auth-bg.png') }})">
                 <div class="d-flex flex-column flex-center py-7 py-lg-15 px-5 px-md-15 w-100">
-                    <img class="mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20" src="{{ secure_asset('assets/admin/media/misc/ap-wallet.png') }}"
+                    <img class="mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20" src="{{ secure_asset('assets/admin/media/misc/safety.webp') }}"
                         alt="" />
                     <h1 class="text-white fs-2qx fw-bolder text-center mb-7">Fast, Efficient and Productive</h1>
                 </div>
