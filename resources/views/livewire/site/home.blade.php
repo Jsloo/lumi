@@ -289,7 +289,7 @@
                         </div>
                         <div class="services-content text-left ml-[30px]">
                             <h4 class="text-[18px] font-semibold capitalize mb-[15px]">Personal Protective Equipment</h4>
-                            <p class=" text-[#363636]">Providing high-quality safety gear for protection in hazardous work environments..</p>
+                            <p class=" text-[#363636]">Providing high-quality safety gear for protection in hazardous work environments.</p>
                         </div>
                     </div>
                 </div>
