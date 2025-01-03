@@ -11,12 +11,6 @@
                 </div>
             </div>
             <div class="menu-item">
-                <a class="menu-link {{ Route::is('admin.products.lists') ? 'active' : null }}" href="{{ route('admin.products.lists') }}">
-                    <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
-                    <span class="menu-title">Product List</span>
-                </a>
-            </div>
-            <div class="menu-item">
                 <a class="menu-link {{ Route::is('admin.category.lists') ? 'active' : null }}" href="{{ route('admin.category.lists') }}">
                     <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                     <span class="menu-title">Category List</span>
@@ -26,6 +20,12 @@
                 <a class="menu-link {{ Route::is('admin.sub-category.lists') ? 'active' : null }}" href="{{ route('admin.sub-category.lists') }}">
                     <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                     <span class="menu-title">Sub Category List</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a class="menu-link {{ Route::is('admin.products.lists') ? 'active' : null }}" href="{{ route('admin.products.lists') }}">
+                    <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+                    <span class="menu-title">Product List</span>
                 </a>
             </div>
             <div class="menu-item">

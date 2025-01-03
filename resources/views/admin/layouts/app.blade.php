@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="noindex, nofollow, noimageindex, nosnippet">
     <title>{{ $pageTitle . ' | Admin' }}</title>
-    <link rel="icon" href="https://apspace.apu.edu.my/assets/icon/favicon.svg">
+    <link rel="icon"  href="{{ asset('assets/site/img/favicon.ico') }}">
     @include('admin.layouts.styles')
 </head>
 

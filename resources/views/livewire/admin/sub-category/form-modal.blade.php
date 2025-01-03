@@ -23,8 +23,9 @@
         <div class="fv-row mb-8">
             <x-admin.label class="required" :name="__('Category')" />
             <x-admin.input-select id="productTypeSelect2" class="form-select-solid" wire:model="category" data-dropdown-parent="#{{ $modalID }}">
+                <option value="" >Select a Category</option>
                 @forelse (\App\Models\Category::all() as $item)
-                    <option value="{{ $item->id }} {{ $item->id == $category ? 'selected' : '' }}">{{ $item->name }}</option>
+                    <option value="{{ $item->id }}"  {{ $item->id == $category ? 'selected' : '' }}>{{ $item->name }}</option>
                 @empty
                     <option value="">No Category Found</option>
                 @endforelse

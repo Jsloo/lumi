@@ -37,6 +37,7 @@
         <div class="fv-row mb-8">
             <x-admin.label class="required" :name="__('Sub Category')" />
             <x-admin.input-select id="productTypeSelect2" class="form-select-solid" wire:model="subCategory" data-dropdown-parent="#{{ $modalID }}">
+                <option value="" >Select a Sub Category</option>
                 @forelse (\App\Models\SubCategory::all() as $item)
                     <option value="{{ $item->id }}" {{ $item->id == $subCategory ? 'selected' : '' }}>{{ $item->name }}</option>
                 @empty
