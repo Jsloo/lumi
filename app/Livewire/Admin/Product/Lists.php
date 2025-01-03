@@ -28,10 +28,6 @@ class Lists extends Component
         return $query;
     }
 
-    public function test(){
-        dd(1);
-    }
-
     public function render()
     {
         return view('livewire.admin.product.lists',[

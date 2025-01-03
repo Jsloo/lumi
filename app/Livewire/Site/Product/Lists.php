@@ -28,7 +28,7 @@ class Lists extends Component
         $message = "Hello, I am interested in learning more about your product: {$product->name}. Could you please provide additional details? Thank you!";
 
         $encodedMessage = urlencode($message);
-        $url = "https://wa.me/60165496195?text={$encodedMessage}";
+        $url = "https://wa.me/60162136008?text={$encodedMessage}";
 
         return redirect()->to($url);
     }
